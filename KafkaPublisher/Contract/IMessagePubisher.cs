@@ -10,6 +10,6 @@ namespace KafkaPublisher.Contract
         /// </summary>
         /// <param name="message">message</param>
         /// <returns></returns>
-        Task<bool> PublishAsync(string message);
+        Task<bool> PublishAsync(string topic ,string message);
     }
 }

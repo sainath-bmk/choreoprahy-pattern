@@ -1,4 +1,5 @@
 ﻿using Confluent.Kafka;
+using KafkaPublisher.Contract;
 using KafkaPublisher.Impl;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -18,13 +19,16 @@ namespace PaymentAPI.BackgroundJobs
     {
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IMessagePubisher _messagePubisher;
+
         private readonly string topic = "order-created";
         private readonly string groupId = "group1";
 
-        public ApacheKafkaOrderCreatedService(IConfiguration configuration, IHostingEnvironment hostingEnvironment)
+        public ApacheKafkaOrderCreatedService(IConfiguration configuration, IHostingEnvironment hostingEnvironment, IMessagePubisher messagePubisher)
         {
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
+            _messagePubisher = messagePubisher;
         }
         public Task StartAsync(CancellationToken cancellationToken)
         {
@@ -32,7 +36,6 @@ namespace PaymentAPI.BackgroundJobs
 
             var config = new ConsumerConfig
             {
-               
                 GroupId = groupId,
                 BootstrapServers = consumerAppSettings?.Where(x => x.Key.Equals("BootStrapServer")).FirstOrDefault().Value,
                 SecurityProtocol = SecurityProtocol.SaslSsl,
@@ -58,6 +61,18 @@ namespace PaymentAPI.BackgroundJobs
                             var consumer = consumerBuilder.Consume
                                (cancelToken.Token);
                             var orderRequest = JsonConvert.DeserializeObject<Order>(consumer.Message.Value);
+
+                            if(orderRequest.Id!="NA")//sucess
+                            {
+                                //write an message to payment-rejected topic
+                                _messagePubisher.PublishAsync("payment-succeded", JsonConvert.SerializeObject(orderRequest));
+                            }
+                            else
+                            {
+                                //write an message to payment-rejected topic
+                                _messagePubisher.PublishAsync("payment-rejected", JsonConvert.SerializeObject(orderRequest));
+                            }
+
                             Debug.WriteLine($"Processing Order Id: { orderRequest.Id} ");
                         }
                     }

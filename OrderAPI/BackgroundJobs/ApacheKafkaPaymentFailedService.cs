@@ -18,7 +18,7 @@ namespace PaymentAPI.BackgroundJobs
     {
         private readonly IConfiguration _configuration;
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly string topic = "order-created";
+        private readonly string topic = "payment-rejected";
         private readonly string groupId = "group1";
 
         public ApacheKafkaPaymentFailedService(IConfiguration configuration, IHostingEnvironment hostingEnvironment)

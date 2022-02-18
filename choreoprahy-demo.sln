@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PaymentAPI", "StockAPI\Paym
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderAPI", "OrderAPI\OrderAPI.csproj", "{F67CBAF3-E47E-4982-BBA2-1B346498DA5E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingApp", "LoggingApp\LoggingApp.csproj", "{3B72A7DB-64C6-48D4-928A-B1DACEFC856B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientApp", "ClientApp\ClientApp.csproj", "{A96114F1-D58E-490F-8E43-E2B110FAB397}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{F67CBAF3-E47E-4982-BBA2-1B346498DA5E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F67CBAF3-E47E-4982-BBA2-1B346498DA5E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F67CBAF3-E47E-4982-BBA2-1B346498DA5E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B72A7DB-64C6-48D4-928A-B1DACEFC856B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B72A7DB-64C6-48D4-928A-B1DACEFC856B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B72A7DB-64C6-48D4-928A-B1DACEFC856B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B72A7DB-64C6-48D4-928A-B1DACEFC856B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A96114F1-D58E-490F-8E43-E2B110FAB397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A96114F1-D58E-490F-8E43-E2B110FAB397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A96114F1-D58E-490F-8E43-E2B110FAB397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A96114F1-D58E-490F-8E43-E2B110FAB397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

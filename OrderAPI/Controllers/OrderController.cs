@@ -34,7 +34,7 @@ namespace OrderAPI.Controllers
             //some db operation to create an order
 
             //publish the item in the confluent topic
-            await _messagePubisher.PublishAsync(JsonConvert.SerializeObject(order));
+            await _messagePubisher.PublishAsync("order-created", JsonConvert.SerializeObject(order));
 
             return Ok();
         }

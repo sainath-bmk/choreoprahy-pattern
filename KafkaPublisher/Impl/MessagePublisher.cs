@@ -19,7 +19,7 @@ namespace KafkaPublisher.Impl
             _configuration = configuration;
             _hostingEnvironment = hostingEnvironment;
         }
-        public async Task<bool> PublishAsync(string message)
+        public async Task<bool> PublishAsync(string topic , string message)
         {
             var producerAppSettings = AppSettings.GetConfig(_configuration, "Producer");
             if (producerAppSettings != null)
@@ -37,7 +37,7 @@ namespace KafkaPublisher.Impl
                 using (var p = new ProducerBuilder<string, string>(producerConfig).Build())
                 {
                     var messg = new Message<string, string> { Key = null, Value = message };
-                    DeliveryResult<string, string> a = await p.ProduceAsync(AppSettings.GetTopicName(_configuration, "Submitted"), messg);
+                    DeliveryResult<string, string> a = await p.ProduceAsync(topic, messg);
                     return a.Status == PersistenceStatus.Persisted ? true : false;
                 }
             }
